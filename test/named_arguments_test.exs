@@ -10,6 +10,8 @@ defmodule NamedArgumentsTest do
 
     def default_arg(opts \\ [name: "Samar", age: 18]), do: opts
 
+    def default_list_arg(nums \\ [1, 2, 3]), do: nums
+
     def multi_args(arg1, arg2), do: {arg1, arg2}
 
     def multi_last_default_arg(arg1, opts \\ [name: "Samar", age: 18]), do: {arg1, opts}
@@ -32,6 +34,11 @@ defmodule NamedArgumentsTest do
   test "default arg" do
     assert TestModule.default_arg(name: "Samar", age: 18) === TestModule.default_arg()
     assert TestModule.default_arg(name: "Hello") === [age: 18, name: "Hello"]
+  end
+
+  test "default normal list arg" do
+    assert TestModule.default_list_arg() === [1, 2, 3]
+    assert TestModule.default_list_arg([1, 2]) === [1, 2]
   end
 
   test "multi args" do
