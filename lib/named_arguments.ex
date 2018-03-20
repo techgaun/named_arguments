@@ -35,7 +35,18 @@ defmodule NamedArguments do
     end
   end
 
-  defmacro merge_args(ast) do
-    IO.inspect ast
+  defmacro merge_args([]), do: nil
+
+  defmacro merge_args(nil), do: nil
+
+  defmacro merge_args([{:\\, _, [var_key, default_args]} | rest]) do
+    quote do
+      var!(unquote(var_key)) = Keyword.merge(unquote(default_args), var!(unquote(var_key)))
+      merge_args(unquote(rest))
+    end
+  end
+
+  defmacro merge_args([_ | rest]) do
+    quote do: merge_args(unquote(rest))
   end
 end
