@@ -26,6 +26,7 @@ defmodule NamedArguments do
   for fun_name <- ~w(def defp)a do
     defmacro unquote(fun_name)(defn = {_, _, args}, do: body) do
       fun = unquote(fun_name)
+
       quote do
         Kernel.unquote(fun)(unquote(defn)) do
           merge_args(unquote(args))
@@ -47,6 +48,7 @@ defmodule NamedArguments do
         else
           var!(unquote(var_key))
         end
+
       merge_args(unquote(rest))
     end
   end

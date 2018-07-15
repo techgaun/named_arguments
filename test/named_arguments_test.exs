@@ -18,7 +18,8 @@ defmodule NamedArgumentsTest do
 
     def multi_default_args(age \\ 18, name \\ "Samar"), do: {age, name}
 
-    def multi_kw_default_args(person \\ [name: "Samar", age: 18], opts \\ [power: :nothing]), do: {person, opts}
+    def multi_kw_default_args(person \\ [name: "Samar", age: 18], opts \\ [power: :nothing]),
+      do: {person, opts}
   end
 
   test "no args" do
@@ -47,7 +48,9 @@ defmodule NamedArgumentsTest do
 
   test "multi with last default args" do
     assert TestModule.multi_last_default_arg(:person) === {:person, [name: "Samar", age: 18]}
-    assert TestModule.multi_last_default_arg(:person, name: "Hello") === {:person, [age: 18, name: "Hello"]}
+
+    assert TestModule.multi_last_default_arg(:person, name: "Hello") ===
+             {:person, [age: 18, name: "Hello"]}
   end
 
   test "multi default args" do
