@@ -40,13 +40,25 @@ defmodule NamedArguments do
 
   defmacro merge_args(nil), do: nil
 
+  defmacro merge_args([{:\\, _, [var_key, {:%{}, _, default_args}]} | rest])
+           when is_list(default_args) do
+    quote do
+      var!(unquote(var_key)) =
+        Map.merge(Enum.into(unquote(default_args), %{}), var!(unquote(var_key)))
+
+      merge_args(unquote(rest))
+    end
+  end
+
   defmacro merge_args([{:\\, _, [var_key, default_args]} | rest]) when is_list(default_args) do
     quote do
       var!(unquote(var_key)) =
-        if Keyword.keyword?(unquote(default_args)) do
-          Keyword.merge(unquote(default_args), var!(unquote(var_key)))
-        else
-          var!(unquote(var_key))
+        cond do
+          Keyword.keyword?(unquote(default_args)) ->
+            Keyword.merge(unquote(default_args), var!(unquote(var_key)))
+
+          true ->
+            var!(unquote(var_key))
         end
 
       merge_args(unquote(rest))

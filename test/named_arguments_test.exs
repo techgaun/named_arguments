@@ -20,6 +20,8 @@ defmodule NamedArgumentsTest do
 
     def multi_kw_default_args(person \\ [name: "Samar", age: 18], opts \\ [power: :nothing]),
       do: {person, opts}
+
+    def map_args(opts \\ %{name: "Samar", age: 18}), do: opts
   end
 
   test "no args" do
@@ -63,5 +65,10 @@ defmodule NamedArgumentsTest do
     opts = []
 
     assert TestModule.multi_kw_default_args(person, opts) === {person, [power: :nothing]}
+  end
+
+  test "map default args" do
+    opts = %{name: "Hello"}
+    assert %{name: "Hello", age: 18} === TestModule.map_args(opts)
   end
 end
