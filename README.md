@@ -1,4 +1,4 @@
-# named_arguments [![Build Status](https://travis-ci.org/techgaun/named_arguments.svg?branch=master)](https://travis-ci.org/techgaun/named_arguments)
+# named_arguments [![Hex version](https://img.shields.io/hexpm/v/named_arguments.svg "Hex version")](https://hex.pm/packages/named_arguments) ![Hex downloads](https://img.shields.io/hexpm/dt/named_arguments.svg "Hex downloads") [![Build Status](https://travis-ci.org/techgaun/named_arguments.svg?branch=master)](https://travis-ci.org/techgaun/named_arguments)
 
 > Named arguments in Elixir
 
