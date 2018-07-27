@@ -3,7 +3,7 @@
 > Named arguments in Elixir
 
 This package abuses macros to use keyword lists
-to mimic named arguments in Elixir.
+and maps to mimic named arguments in Elixir.
 
 The usage is very simple:
 
@@ -22,5 +22,7 @@ Analyzer.query()
 Analyzer.query(aggregate: :avg)
 # running query with avg over range 1h
 ```
+
+While the above example shows Keyword list example, this works fine with maps as well.
 
 You can check the [test](test/named_arguments_test.exs) for more examples.
