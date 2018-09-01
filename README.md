@@ -5,6 +5,12 @@
 This package abuses macros to use keyword lists
 and maps to mimic named arguments in Elixir.
 
+Installation:
+
+```elixir
+{:named_arguments, "~> 0.1.0"}
+```
+
 The usage is very simple:
 
 ```elixir
